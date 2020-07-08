@@ -8,6 +8,7 @@ class Registration extends Component {
       surname: "",
       password: "",
       email: "",
+      messages: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,9 +33,23 @@ class Registration extends Component {
       body: JSON.stringify(user),
     };
 
-    fetch("http://localhost:8080/api/users", requestOptions).catch((error) => {
-      console.log("Error", error);
-    });
+    fetch("http://localhost:8080/api/users", requestOptions)
+      .then(async (response) => {
+        if (response.status === 400) {
+          const data = await response.json();
+          this.setState({
+            messages: data.reason,
+          });
+        } else if (response.status === 201) {
+          this.setState({
+            messages: ["Account created successfully!"],
+          });
+        }
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+    event.preventDefault();
   }
 
   handleChange(event) {
@@ -46,6 +61,7 @@ class Registration extends Component {
   render() {
     return (
       <div className="container">
+        <h2>Registration</h2>
         <div className="row">
           <form onSubmit={this.handleSubmit}>
             <div className="login-inputs">
@@ -86,9 +102,17 @@ class Registration extends Component {
               onChange={this.handleChange}
               required
             ></input>
-            <button className="btn btn-dark btn-md col-md-12" type="submit">
+            <button
+              className="btn btn-dark btn-md col-md-12 mb-2"
+              type="submit"
+            >
               Register
-            </button>
+            </button>{" "}
+            <div>
+              {this.state.messages.map((message, idx) => (
+                <p key={idx}>{message}</p>
+              ))}
+            </div>
           </form>
         </div>
       </div>
