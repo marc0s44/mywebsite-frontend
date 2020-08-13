@@ -1,20 +1,8 @@
 import React from "react";
-import Registration from "./components/Registration";
+import StartPage from "./containers/startPage/StartPage";
 
 function App() {
-  return (
-    <div
-      className="App"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#686868",
-      }}
-    >
-      <Registration />
-    </div>
-  );
+  return <StartPage />;
 }
 
 export default App;
