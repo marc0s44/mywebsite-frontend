@@ -2,35 +2,10 @@
   display: flex;
 }
 
-.left {
-  background-image: url("../../assets/images/city.jpg");
-  background-position: 10% 8%;
-  width: 50%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .right {
   background-color: blue;
   width: 50%;
   height: 100vh;
-}
-
-.text {
-  font-size: 1.25rem;
-  color: white;
-  font-family: "Nunito Sans", sans-serif;
-  font-weight: bold;
   display: flex;
-  align-items: center;
-  margin: 0 2em;
-}
-
-.icons {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin-right: 0.25em;
+  justify-content: center;
 }
